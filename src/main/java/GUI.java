@@ -29,7 +29,7 @@ public class GUI extends JFrame {
             JTextField port = new JTextField("1337");
             JTextField fps = new JTextField("30");
 
-            JButton apply = new JButton("apply");
+            JButton apply = new JButton("Apply!");
             apply.addActionListener((ActionEvent e2) -> {
                 this.port = Integer.valueOf(port.getText());
                 this.ip = ip.getText();
@@ -58,7 +58,7 @@ public class GUI extends JFrame {
             try {
                 this.setSize(1920, 1080);
                 this.setResizable(false);
-                new Thread(new ReceiveSocket(ip, port, fps, new MyCanvas(this))).start();
+                new Thread(new ReceiveSocket(ip, port, new MyCanvas(this))).start();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -70,7 +70,8 @@ public class GUI extends JFrame {
         this.setContentPane(panel);
 
         this.setVisible(true);
-        this.setSize(400, 400);
+        this.setSize(200, 100);
+        this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 }

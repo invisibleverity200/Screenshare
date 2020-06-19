@@ -13,7 +13,7 @@ public class ProxySocket extends ServerSocket implements Runnable {
         while (true) {
             try {
                 Socket connSocket = this.accept();
-                new Thread(new socketConnection(connSocket, fps)).start();
+                new Thread(new SocketConnection(connSocket, fps)).start();
             } catch (IOException e) {
                 e.printStackTrace();
             }
