@@ -21,11 +21,11 @@ public class SocketConnection implements Runnable {
         while (true) {
             try {
                 BufferedImage image = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
-                byte[][] data = protocol.encode(image);
+                Package[] data = protocol.encode(image);
                 dataOutputStream.writeInt(data.length);
                 for (int x = 0; x < data.length; x++) {
-                    dataOutputStream.writeInt(data[x].length);
-                    dataOutputStream.write(data[x]);
+                    dataOutputStream.writeInt(data[x].getSize());
+                    dataOutputStream.write(data[x].getPackageData());
                 }
 
             } catch (AWTException e) {

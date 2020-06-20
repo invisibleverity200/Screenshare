@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class MyProtocol implements Protocol {
     @Override
-    public byte[][] encode(BufferedImage image) {
+    public Package[] encode(BufferedImage image) {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(image, "png", baos);
@@ -19,16 +19,16 @@ public class MyProtocol implements Protocol {
 
             if (lastPackageSize >= size % (32768 - 2 * Integer.BYTES)) packges += 1;
 
-            byte[][] data = new byte[packges][];
+            Package[] packages = new Package[packges];
 
-            for (int x = 0; x < data.length; x++) {
-                if (x == data.length - 1) {
-                    data[x] = Arrays.copyOfRange(byteData, x * (32768 - 2 * Integer.BYTES), x * (32768 - 2 * Integer.BYTES) + (size % (32768 - 2 * Integer.BYTES)));
+            for (int x = 0; x < packages.length; x++) {
+                if (x == packages.length - 1) {
+                    packages[x] = new Package(Arrays.copyOfRange(byteData, x * (32768 - 2 * Integer.BYTES), x * (32768 - 2 * Integer.BYTES) + (size % (32768 - 2 * Integer.BYTES))));
                 } else {
-                    data[x] = Arrays.copyOfRange(byteData, x * (32768 - 2 * Integer.BYTES), x * (32768 - 2 * Integer.BYTES) + (32768 - 2 * Integer.BYTES));
+                    packages[x] = new Package(Arrays.copyOfRange(byteData, x * (32768 - 2 * Integer.BYTES), x * (32768 - 2 * Integer.BYTES) + (32768 - 2 * Integer.BYTES)));
                 }
             }
-            return data;
+            return packages;
 
         } catch (IOException e) {
             e.printStackTrace();

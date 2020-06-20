@@ -18,9 +18,7 @@ public class MyCanvas extends Canvas {
         this.setBackground(Color.BLACK);
         this.setVisible(true);
         this.setFocusable(false);
-
-
-        //Putting it all together.
+        
         frame.getContentPane().add(this);
 
         this.createBufferStrategy(3);
