@@ -24,7 +24,7 @@ public class SocketConnection implements Runnable {
                 Package[] data = protocol.encode(image);
                 dataOutputStream.writeInt(data.length);
                 for (int x = 0; x < data.length; x++) {
-                    dataOutputStream.writeInt(data[x].getSize());
+                    dataOutputStream.writeInt(data[x].getHeader().size);
                     dataOutputStream.write(data[x].getPackageData());
                 }
 
