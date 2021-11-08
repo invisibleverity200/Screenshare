@@ -1,2 +1,2 @@
 # Screenshare
-a retardet way to screenshare your screen
+a retarded way to share your screen
